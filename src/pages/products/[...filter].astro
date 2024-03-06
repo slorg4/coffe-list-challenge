@@ -1,0 +1,33 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "../../layouts/Layout.astro";
+import MenuTitle from "../../components/MenuTitle.astro";
+import MenuFilter from "../../components/MenuFilter.astro";
+import Product from "../../components/Product.astro";
+import { getAllProducts, getAvailableProducts } from "../../scripts/api.ts";
+
+export const getStaticPaths = (async () => {
+  return [
+    { params: { filter: undefined }, props: { products: getAllProducts() } },
+    {
+      params: { filter: "available" },
+      props: { products: getAvailableProducts() },
+    },
+  ];
+}) satisfies GetStaticPaths;
+
+const { filter } = Astro.params;
+const { products } = Astro.props;
+---
+
+<Layout pageTitle="Coffe Menu">
+  <div class="bg-coffe-1 rounded-lg px-8 sm:px-20 flex flex-col items-center">
+    <MenuTitle />
+    <MenuFilter filter={filter} />
+    <div class="grid xl:grid-cols-3 lg:grid-cols-2">
+      <Product product={products[0]} />
+      <p>test</p>
+      <p>test</p>
+    </div>
+  </div>
+</Layout>

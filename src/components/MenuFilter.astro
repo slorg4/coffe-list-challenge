@@ -1,0 +1,21 @@
+---
+const { filter } = Astro.props;
+---
+
+<nav class="flex gap-5 text-coffe-5">
+  <a href="/products" class={`${!filter ? "selected" : ""} rounded-lg p-3`}
+    >All Products</a
+  >
+  <a
+    href="/products/available"
+    class={`${filter === "available" ? "selected " : ""} rounded-lg p-3`}
+  >
+    Available Now
+  </a>
+</nav>
+
+<style>
+  .selected {
+    background-color: theme(colors.coffe-3);
+  }
+</style>
