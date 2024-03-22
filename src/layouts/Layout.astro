@@ -1,8 +1,9 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import "@fontsource/dm-sans";
+
 const { pageTitle } = Astro.props;
 ---
-
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -22,13 +23,13 @@ const { pageTitle } = Astro.props;
       }
     </style>
   </head>
-  <body class="bg-coffe-2">
+  <body class="bg-coffe-2 font-dm-sans antialiased">
     <img
       class="coffe-background"
       src="/imgs/bg-cafe.webp"
       alt="Background of a Coffe store"
     />
-    <main class="container max-w-full py-28 px-16">
+    <main class="container max-w-full pt-28 pb-24 px-24 max-[1024px]:px-32 max-[550px]:px-8">
       <slot />
     </main>
   </body>

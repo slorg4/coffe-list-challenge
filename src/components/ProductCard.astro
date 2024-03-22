@@ -1,0 +1,27 @@
+---
+import { type Product } from "../scripts/api";
+import Badge from "./Badge.astro";
+import Rate from "./Rate";
+
+const { product } = Astro.props as { product: Product };
+---
+
+<div class="flex flex-col gap-2">
+  {
+    product.popular && (
+      <Badge className="absolute m-2 bg-coffe-6 rounded-xl px-4 py-1">
+        <p class="text-coffe-2 text-[0.625rem] font-bold">Popular</p>
+      </Badge>
+    )
+  }
+  <img src={product.image} alt="Product's Picture" class="rounded-lg" />
+  <div class="flex justify-between">
+    <p class="text-coffe-5 text-base font-bold">{product.name}</p>
+    <Badge className="rounded-md bg-coffe-4 px-2 py-1">
+      <p class="text-xs text-coffe-2 font-bold">{product.price}</p>
+    </Badge>
+  </div>
+  <Rate client:visible product={product} />
+</div>
+
+<style></style>
